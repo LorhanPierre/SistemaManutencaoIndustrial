@@ -1,4 +1,9 @@
 package weg.manutencaoIndustrial.controller;
 
-public class manutencaoSystem {
+public class ManutencaoSystem {
+
+    public void applicattion(){
+
+    }
+
 }

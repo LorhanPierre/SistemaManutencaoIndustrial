@@ -1,4 +1,7 @@
 package weg.manutencaoIndustrial.model.enums;
 
 public enum StatusOrdemManutencao {
+    PENDENTE,
+    EXECUTADA,
+    CANCELADA
 }
