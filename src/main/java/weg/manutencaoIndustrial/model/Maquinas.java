@@ -16,6 +16,11 @@ public class Maquinas {
         this.statusMaquina = StatusMaquinas.OPERACIONAL;
     }
 
+    public Maquinas(String nomeMaquina, String setor) {
+        this.nomeMaquina = nomeMaquina;
+        this.setor = setor;
+    }
+
     public Maquinas(String nomeMaquina, String setor, StatusMaquinas statusMaquina) {
         this.nomeMaquina = nomeMaquina;
         this.setor = setor;
@@ -46,7 +51,7 @@ public class Maquinas {
         this.setor = setor;
     }
 
-    public StatusMaquinas getStatusMaquina() {
+    public StatusMaquinas getStatusMaquina(StatusMaquinas statusMaquina) {
         return statusMaquina;
     }
 
