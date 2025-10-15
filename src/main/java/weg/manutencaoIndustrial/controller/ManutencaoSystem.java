@@ -1,6 +1,7 @@
 package weg.manutencaoIndustrial.controller;
 
 import weg.manutencaoIndustrial.service.MaquinasService;
+import weg.manutencaoIndustrial.service.TecnicosService;
 import weg.manutencaoIndustrial.view.Menus;
 
 import static weg.manutencaoIndustrial.view.Mensagens.Agradecimento;
@@ -11,6 +12,7 @@ public class ManutencaoSystem {
     public void applicattion(){
         var menu = new Menus();
         var maquina = new MaquinasService();
+        var tecnicos = new TecnicosService();
         boolean endSystem = false;
 
         while(!endSystem){
