@@ -157,7 +157,7 @@ Ao iniciar o sistema, o usuário visualiza o menu principal conforme o exemplo a
 **Lorhan Pierre de Melo**  
 💼 Desenvolvedor Java / Back-end  
 📧 lorhan_p_melo@estudante.sesisenai.org.br  
-🌐 [linkedin.com/in/seuusuario](#)
+🌐 linkedin.com/in/lorhan-pierre(#)
 
 ---
 
@@ -167,3 +167,4 @@ Este projeto é distribuído sob a licença **MIT**.
 Você pode utilizá-lo, modificá-lo e redistribuí-lo livremente.
 
 ---
+
