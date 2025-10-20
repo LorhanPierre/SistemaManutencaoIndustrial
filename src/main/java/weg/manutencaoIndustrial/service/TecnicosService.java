@@ -37,9 +37,4 @@ public class TecnicosService {
 
         }
     }
-
-    public static void main(String[] args) throws SQLException {
-        var tecnico = new TecnicosService();
-        tecnico.CadastrarTecnico();
-    }
 }

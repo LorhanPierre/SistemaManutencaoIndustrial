@@ -27,6 +27,24 @@ public class Utils {
         return numero;
     }
 
+    public static double inputNumberDouble(){
+
+        boolean valorValido = false;
+        double numero = 0;
+
+        while(!valorValido){
+            try{
+                numero = input.nextDouble();
+                valorValido = true;
+            }catch(InputMismatchException error){
+                valorErradoNumero();
+                input.nextLine();
+            }
+        }
+        input.nextLine();
+        return numero;
+    }
+
     public static String inputString(){
 
         boolean valorValido = false;
@@ -45,9 +63,5 @@ public class Utils {
             }
         }
         return string;
-    }
-
-    public static void main(String[] args) {
-        inputString();
     }
 }

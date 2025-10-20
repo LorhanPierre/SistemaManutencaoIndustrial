@@ -1,5 +1,6 @@
 package weg.manutencaoIndustrial.view;
 
+import static weg.manutencaoIndustrial.utils.Utils.inputNumberDouble;
 import static weg.manutencaoIndustrial.utils.Utils.inputString;
 
 public class Inputs {
@@ -31,4 +32,20 @@ public class Inputs {
         System.out.print  ("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n:");
         return inputString();
     }
+
+    public String inputNomePeca(){
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃               Digite o nome da Peça                  ┃");
+        System.out.print  ("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n:");
+        return inputString();
+    }
+
+    public double inputQuantidadeIncialPeca(){
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃        Digite a quantidade inicial de Peças          ┃");
+        System.out.print  ("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n:");
+        return inputNumberDouble();
+    }
+
+
 }
