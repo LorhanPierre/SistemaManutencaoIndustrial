@@ -1,5 +1,6 @@
 package weg.manutencaoIndustrial.utils;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -64,4 +65,5 @@ public class Utils {
         }
         return string;
     }
+
 }

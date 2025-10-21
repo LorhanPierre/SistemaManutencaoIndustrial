@@ -21,6 +21,9 @@ public class OrdensManutencao {
         this.statusOrdemManutencao = statusOrdemManutencao;
     }
 
+    public OrdensManutencao(LocalDate now) {
+    }
+
     public int getIdOrdemPecas() {
         return idOrdemPecas;
     }
@@ -37,7 +40,7 @@ public class OrdensManutencao {
         this.dataOrdemPecas = dataOrdemPecas;
     }
 
-    public StatusOrdemManutencao getStatusOrdemManutencao() {
+    public StatusOrdemManutencao getStatusOrdemManutencao(StatusOrdemManutencao statusOrdemManutencao) {
         return statusOrdemManutencao;
     }
 

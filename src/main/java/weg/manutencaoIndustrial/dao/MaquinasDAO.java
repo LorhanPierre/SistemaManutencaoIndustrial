@@ -4,6 +4,7 @@ import weg.manutencaoIndustrial.connection.Conexao;
 import weg.manutencaoIndustrial.dto.ValidacaoMaquina;
 import weg.manutencaoIndustrial.model.Maquinas;
 import weg.manutencaoIndustrial.model.enums.StatusMaquinas;
+import weg.manutencaoIndustrial.model.enums.StatusOrdemManutencao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,6 +45,62 @@ public class MaquinasDAO {
                 try (ResultSet rs = stmt.executeQuery()){
                     return  rs.next();
                 }
+        }
+    }
+
+    public List<Maquinas> ListarMaquinasEmOperacao() throws SQLException{
+        List<Maquinas> maquinas = new ArrayList<>();
+
+        String tipo = StatusMaquinas.OPERACIONAL.toString();
+
+        String query = "SELECT " +
+                "id, " +
+                "nome, " +
+                "setor " +
+                "FROM Maquina " +
+                "WHERE status = ?";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, tipo);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()){
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String setor = rs.getString("setor");
+                var maquina = new Maquinas(id,nome,setor,null);
+                maquinas.add(maquina);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return maquinas;
+    }
+
+    public void alterarStatusMaquinas(int id) throws SQLException{
+
+        String query = "UPDATE Maquina SET status = ? WHERE id = ?";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setString(1, String.valueOf(StatusMaquinas.EM_MANUTENCAO));
+            stmt.setInt(2, id);
+            stmt.executeUpdate();
+        }
+    }
+
+    public boolean validarIdMaquinas(int id) throws SQLException{
+
+        String query = "SELECT id FROM Maquina WHERE id = ?";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            return  rs.next();
         }
     }
 }
