@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PecasDAO {
 
@@ -39,6 +41,49 @@ public class PecasDAO {
             try (ResultSet rs = stmt.executeQuery()){
                 return  (rs.next());
             }
+        }
+    }
+
+    public List<Pecas> listarPecas()throws SQLException {
+
+        List<Pecas> listaPecas = new ArrayList<>();
+
+        String query = "SELECT " +
+                "id, " +
+                "nome, " +
+                "estoque " +
+                "FROM Peca";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+
+            try (ResultSet rs = stmt.executeQuery()){
+                while(rs.next()){
+
+                    int id = rs.getInt("id");
+                    String nome = rs.getString("nome");
+                    int estoque = rs.getInt("estoque");
+                    var pecas = new Pecas(id, nome, estoque);
+                    listaPecas.add(pecas);
+                }
+            }
+        }
+        return listaPecas;
+    }
+
+    public boolean validarIdPeca(int idPeca)throws SQLException {
+
+        String query = "SELECT " +
+                "id " +
+                "FROM " +
+                "Peca " +
+                "WHERE id = ?";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setInt(1, idPeca);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next();
         }
     }
 }

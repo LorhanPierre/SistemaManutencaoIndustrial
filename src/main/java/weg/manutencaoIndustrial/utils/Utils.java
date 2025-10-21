@@ -10,7 +10,7 @@ public class Utils {
 
     static Scanner input = new Scanner(System.in);
 
-    public static int inputNumber(){
+    public int inputNumber(){
 
         boolean valorValido = false;
         int numero = 0;
@@ -28,7 +28,7 @@ public class Utils {
         return numero;
     }
 
-    public static double inputNumberDouble(){
+    public double inputNumberDouble(){
 
         boolean valorValido = false;
         double numero = 0;
@@ -46,7 +46,7 @@ public class Utils {
         return numero;
     }
 
-    public static String inputString(){
+    public String inputString(){
 
         boolean valorValido = false;
         String string = "";

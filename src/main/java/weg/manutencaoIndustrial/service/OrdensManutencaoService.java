@@ -13,9 +13,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static weg.manutencaoIndustrial.utils.Utils.inputNumber;
+import weg.manutencaoIndustrial.utils.Utils;
 
 public class OrdensManutencaoService {
+
+    Utils util = new Utils();
 
     public void CriarOrdensManutencao() throws SQLException {
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -43,7 +45,7 @@ public class OrdensManutencaoService {
         int idMaquina = 0;
         boolean validarIdMaquina = false;
         while(!validarIdMaquina){
-            idMaquina = inputNumber();
+            idMaquina = util.inputNumber();
             if(maquina.validarIdMaquinas(idMaquina)){
                 validarIdMaquina = true;
             }else{
@@ -67,7 +69,7 @@ public class OrdensManutencaoService {
         int idTecnico = 0;
         boolean validarIdTecnico = false;
         while(!validarIdTecnico){
-            idTecnico = inputNumber();
+            idTecnico = util.inputNumber();
             if(tecnico.validarIdTecnico(idTecnico)){
                 validarIdTecnico = true;
             }else{

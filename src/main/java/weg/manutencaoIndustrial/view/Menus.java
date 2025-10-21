@@ -1,8 +1,10 @@
 package weg.manutencaoIndustrial.view;
 
-import static weg.manutencaoIndustrial.utils.Utils.inputNumber;
+import weg.manutencaoIndustrial.utils.Utils;
 
 public class Menus {
+
+    Utils util = new Utils();
 
     public int MenuInicial(){
         System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
@@ -20,6 +22,6 @@ public class Menus {
         System.out.println("┃ 0 - sair                                 ┃");
         System.out.print  ("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n:");
 
-        return inputNumber();
+        return util.inputNumber();
     }
 }

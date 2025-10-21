@@ -1,10 +1,7 @@
 package weg.manutencaoIndustrial.controller;
 
 import weg.manutencaoIndustrial.model.OrdensManutencao;
-import weg.manutencaoIndustrial.service.MaquinasService;
-import weg.manutencaoIndustrial.service.OrdensManutencaoService;
-import weg.manutencaoIndustrial.service.PecasService;
-import weg.manutencaoIndustrial.service.TecnicosService;
+import weg.manutencaoIndustrial.service.*;
 import weg.manutencaoIndustrial.view.Menus;
 
 import java.sql.SQLException;
@@ -20,6 +17,7 @@ public class ManutencaoSystem {
         var tecnicos = new TecnicosService();
         var pecas = new PecasService();
         var ordem = new OrdensManutencaoService();
+        var ordemPeca = new OrdemPecasService();
         boolean endSystem = false;
 
         while(!endSystem){
@@ -36,7 +34,9 @@ public class ManutencaoSystem {
                 case 4 ->{
                     ordem.CriarOrdensManutencao();
                 }
-                case 5 ->{}
+                case 5 ->{
+                    ordemPeca.AssociarPecasOrdem();
+                }
                 case 6 ->{}
                 case 0 ->{
                     Agradecimento();

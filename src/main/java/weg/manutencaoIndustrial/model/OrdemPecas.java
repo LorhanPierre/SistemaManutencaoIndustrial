@@ -2,22 +2,22 @@ package weg.manutencaoIndustrial.model;
 
 public class OrdemPecas {
 
-    private int idOrdemPecas;
+    private int idOrdem;
     private int idPeca;
     private double quantidade;
 
-    public OrdemPecas(int idOrdemPecas, int idPeca, double quantidade) {
-        this.idOrdemPecas = idOrdemPecas;
+    public OrdemPecas(int idOrdem, int idPeca, double quantidade) {
+        this.idOrdem = idOrdem;
         this.idPeca = idPeca;
         this.quantidade = quantidade;
     }
 
-    public int getIdOrdemPecas() {
-        return idOrdemPecas;
+    public int getIdOrdem() {
+        return idOrdem;
     }
 
-    public void setIdOrdemPecas(int idOrdemPecas) {
-        this.idOrdemPecas = idOrdemPecas;
+    public void setIdOrdem(int idOrdem) {
+        this.idOrdem = idOrdem;
     }
 
     public int getIdPeca() {
