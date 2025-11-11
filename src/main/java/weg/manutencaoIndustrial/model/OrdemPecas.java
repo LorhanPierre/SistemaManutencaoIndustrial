@@ -11,6 +11,10 @@ public class OrdemPecas {
         this.idPeca = idPeca;
         this.quantidade = quantidade;
     }
+    public OrdemPecas(int idPeca, double quantidade) {
+        this.idPeca = idPeca;
+        this.quantidade = quantidade;
+    }
 
     public int getIdOrdem() {
         return idOrdem;

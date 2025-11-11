@@ -1,9 +1,9 @@
 package weg.manutencaoIndustrial.service;
 
-import weg.manutencaoIndustrial.dao.MaquinasDAO;
-import weg.manutencaoIndustrial.dao.OrdensManutencaoDAO;
-import weg.manutencaoIndustrial.dao.TecnicosDAO;
+import weg.manutencaoIndustrial.dao.*;
+import weg.manutencaoIndustrial.dto.OrdensPendente;
 import weg.manutencaoIndustrial.model.Maquinas;
+import weg.manutencaoIndustrial.model.OrdemPecas;
 import weg.manutencaoIndustrial.model.OrdensManutencao;
 import weg.manutencaoIndustrial.model.Tecnicos;
 import weg.manutencaoIndustrial.model.enums.StatusOrdemManutencao;
@@ -84,4 +84,80 @@ public class OrdensManutencaoService {
 
         System.out.println("\u001b[32m| Ordem de manutenção criada com sucesso!\u001b[0m");
     }
+
+    public void ExecutarManutencao() throws SQLException {
+
+        var ordem = new OrdensManutencaoDAO();
+        List<OrdensPendente> listOrdensPendentes  = ordem.ListarOrdensPendente();
+
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃             Área de Execução de Ordens               ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃            Escolha uma Ordem de Manutenção           ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+
+        int idOrdem = 0;
+
+        if(listOrdensPendentes.isEmpty()){
+            System.out.println("\u001b[33m!Nenhuma Ordem foi associada!\u001b[0m");
+            return;
+        }else{
+            for(OrdensPendente pendente : listOrdensPendentes){
+                System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+                System.out.println("- ID               : "+pendente.id());
+                System.out.println("-----------------------------------------------------");
+                System.out.println("- ID Máquina       : "+pendente.idMaquina());
+                System.out.println("-----------------------------------------------------");
+                System.out.println("- ID Técnico       : "+pendente.idTecnico());
+                System.out.println("-----------------------------------------------------");
+                System.out.println("- Data Solicitação : "+pendente.dataSolicitacao());
+                System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            }
+            boolean validarIdOrdem = false;
+            while(!validarIdOrdem){
+                System.out.print("| Digite sua escolha:");
+                idOrdem = util.inputNumber();
+                if(ordem.validaIdOrdem(idOrdem)){
+                    validarIdOrdem = true;
+                }else{
+                    System.out.println("\u001b[31m| ID não existe! Tente novamente!\u001b[0m");
+                }
+            }
+        }
+
+
+        var estoquePecas = new OrdemPecasDAO();
+        List<OrdemPecas> ordemPecas = estoquePecas.BuscarPecasPorId(idOrdem);
+
+
+        System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+        System.out.println("┃         Análise de Disponibilidade de Peças          ┃");
+        System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+
+        if(ordemPecas.isEmpty()){
+            System.out.println("\u001b[33m!Nenhuma peça foi associada a essa Ordem!\u001b[0m");
+        }
+
+        for(OrdemPecas pecas : ordemPecas){
+            var Pecas = new PecasDAO();
+            int quantidadePecasEmEstoque = Pecas.BuscarQuantidadePecas(pecas.getIdPeca());
+            System.out.println("┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓");
+            System.out.println("- ID                       : "+pecas.getIdPeca());
+            System.out.println("-----------------------------------------------------");
+            System.out.println("- QTD de Peças Necessárias : "+pecas.getQuantidade());
+            System.out.println("-----------------------------------------------------");
+            System.out.println("- QTD em Estoque           : "+quantidadePecasEmEstoque);
+            System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+            if(quantidadePecasEmEstoque >= pecas.getQuantidade()){
+                System.out.println("\u001b[32m✔ Disponivel para executar manutenção!\u001b[0m");
+            }else{
+                System.out.println("\u001b[31m✖ Indisponivel para executar manutenção!\u001b[0m");
+                return;
+            }
+
+        }
+    }
+
 }

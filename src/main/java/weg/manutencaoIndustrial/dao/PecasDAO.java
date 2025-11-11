@@ -86,4 +86,36 @@ public class PecasDAO {
             return rs.next();
         }
     }
+
+    public int BuscarQuantidadePecas(int idPeca)throws SQLException {
+
+        int estoque = 0;
+
+        String query = "SELECT " +
+                "estoque " +
+                "FROM Peca " +
+                "WHERE id = ?";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+               stmt.setInt(1, idPeca);
+               ResultSet rs = stmt.executeQuery();
+               if(rs.next()){
+                  estoque = rs.getInt("estoque");
+               }
+        }
+        return estoque;
+    }
+
+    public void AtualizarQuantidadePecas(int idPeca,int novoEstoque)throws SQLException {
+
+        String query = "UPDATE Peca SET estoque = ? WHERE id = ?";
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement stmt = conn.prepareStatement(query)){
+            stmt.setInt(1, novoEstoque);
+            stmt.setInt(2, idPeca);
+            stmt.executeUpdate();
+        }
+    }
 }

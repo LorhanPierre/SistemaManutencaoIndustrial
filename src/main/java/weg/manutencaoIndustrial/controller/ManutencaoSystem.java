@@ -37,7 +37,9 @@ public class ManutencaoSystem {
                 case 5 ->{
                     ordemPeca.AssociarPecasOrdem();
                 }
-                case 6 ->{}
+                case 6 ->{
+                    ordem.ExecutarManutencao();
+                }
                 case 0 ->{
                     Agradecimento();
                     endSystem = true;
